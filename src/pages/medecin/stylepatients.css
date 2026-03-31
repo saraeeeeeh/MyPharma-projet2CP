@@ -1,0 +1,183 @@
+/* Styles spécifiques à la page Patient */
+
+.search-card {
+    padding: 15px 25px !important;
+    margin-bottom: 30px;
+    background: #f1f3f0 !important;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 5px 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    border: 1px solid #ffffff;
+    transition: 0.3s;
+}
+
+.search-box:focus-within {
+    border-color: #137FEC;
+    box-shadow: 0 4px 15px rgba(19, 127, 236, 0.1);
+}
+
+.search-box i {
+    color: #137FEC;
+    font-size: 18px;
+    margin-right: 15px;
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 15px 0;
+    background: transparent;
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
+}
+.search-box input::placeholder {
+    color: #94a3b8;
+}
+
+.patients-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+}
+
+.patient-card {
+    padding: 25px !important;
+    display: flex;
+    flex-direction: column;
+    background: #f1f3f0 !important;
+    transition: 0.3s;
+}
+
+.patient-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+}
+
+.pc-top {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #d1d5db;
+}
+
+.pc-avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 800;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.pc-main {
+    flex: 1;
+}
+
+.pc-main h3 {
+    margin: 0 0 5px 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #333;
+}
+
+.pc-main p {
+    margin: 0;
+    font-size: 13px;
+    color: #666;
+    font-weight: 500;
+}
+
+.pc-del {
+    background: transparent;
+    border: none;
+    color: #d1d5db;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    padding: 5px;
+}
+.pc-del:hover {
+    color: #dc2626;
+}
+
+.pc-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.pc-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 13px;
+    color: #5c677d;
+    font-weight: 500;
+}
+
+.pc-row i {
+    width: 20px;
+    text-align: center;
+    color: #137FEC;
+}
+
+.pc-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.pc-status {
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.pc-voir {
+    background: transparent;
+    border: none;
+    color: #137FEC;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.pc-voir:hover {
+    color: #0e62b8;
+    transform: translateX(3px);
+}
+
+.custom-sel {
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 15px 20px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    font-family: inherit;
+    font-weight: 500;
+}
