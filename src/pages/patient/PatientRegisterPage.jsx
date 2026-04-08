@@ -6,6 +6,7 @@ import './PatientPages.css';
 function PatientRegisterPage() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
     nom: '',
@@ -13,13 +14,13 @@ function PatientRegisterPage() {
     jour: '',
     mois: '',
     annee: '',
-    motDePasse: ''
+    motDePasse: '',
+    confirmMotDePasse: ''   // ← nouveau
   });
+  const [termsAccepted, setTermsAccepted] = useState(false);
 
-  // Générer les jours (1-31)
   const jours = Array.from({ length: 31 }, (_, i) => i + 1);
 
-  // Les mois
   const mois = [
     { value: '01', label: 'Janvier' },
     { value: '02', label: 'Février' },
@@ -35,7 +36,6 @@ function PatientRegisterPage() {
     { value: '12', label: 'Décembre' }
   ];
 
-  // Générer les années (1940 - année actuelle)
   const anneeActuelle = new Date().getFullYear();
   const annees = Array.from(
     { length: anneeActuelle - 1940 + 1 },
@@ -44,19 +44,25 @@ function PatientRegisterPage() {
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
-    // Efface l'erreur quand l'utilisateur commence à taper
     setErrors({ ...errors, [e.target.name]: '' });
   }
 
   function validate() {
     const newErrors = {};
     if (!form.nom.trim()) newErrors.nom = 'Le nom est obligatoire';
+
     if (!form.email.trim()) newErrors.email = "L'email est obligatoire";
-    if (!form.jour) newErrors.date = 'Le jour est obligatoire';
-    if (!form.mois) newErrors.date = 'Le mois est obligatoire';
-    if (!form.annee) newErrors.date = 'L\'année est obligatoire';
+    else if (form.email !== form.confirmEmail) newErrors.confirmEmail = "Les emails ne correspondent pas";
+
+    if (!form.jour || !form.mois || !form.annee) newErrors.date = 'La date de naissance est obligatoire';
+
     if (!form.motDePasse) newErrors.motDePasse = 'Le mot de passe est obligatoire';
     else if (form.motDePasse.length < 6) newErrors.motDePasse = 'Minimum 6 caractères';
+
+    if (!form.confirmMotDePasse) newErrors.confirmMotDePasse = 'Veuillez confirmer votre mot de passe';
+    else if (form.motDePasse !== form.confirmMotDePasse) newErrors.confirmMotDePasse = 'Les mots de passe ne correspondent pas';
+    
+    if (!termsAccepted) newErrors.terms = 'Vous devez accepter les conditions';
     return newErrors;
   }
 
@@ -64,10 +70,28 @@ function PatientRegisterPage() {
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
-      return; // ❌ bloque si erreurs
+      return;
     }
-    navigate('/patient/health-profile'); // ✅ contourne l'envoie d'email
+    localStorage.setItem('patient', JSON.stringify({
+      nom: form.nom,
+      email: form.email,
+      dateNaissance: `${form.jour}/${form.mois}/${form.annee}`
+    }));
+    navigate('/patient/otp', { state: { contact: form.email } });
   }
+
+  const EyeIcon = ({ visible }) => visible ? (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/>
+      <path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/>
+      <line x1="1" y1="1" x2="23" y2="23"/>
+    </svg>
+  ) : (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+      <circle cx="12" cy="12" r="3"/>
+    </svg>
+  );
 
   return (
     <div className="patient-bg">
@@ -128,7 +152,6 @@ function PatientRegisterPage() {
                   <option key={j} value={j}>{j}</option>
                 ))}
               </select>
-
               <select
                 name="mois"
                 value={form.mois}
@@ -140,7 +163,6 @@ function PatientRegisterPage() {
                   <option key={m.value} value={m.value}>{m.label}</option>
                 ))}
               </select>
-
               <select
                 name="annee"
                 value={form.annee}
@@ -168,37 +190,40 @@ function PatientRegisterPage() {
                 onChange={handleChange}
                 className={errors.motDePasse ? 'input-error' : ''}
               />
-              {/* Icône SVG professionnelle */}
-              <span
-                onClick={() => setShowPassword(!showPassword)}
-                style={{ cursor: 'pointer' }}
-              >
-                {showPassword ? (
-                  // Oeil barré
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94"/>
-                    <path d="M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19"/>
-                    <line x1="1" y1="1" x2="23" y2="23"/>
-                  </svg>
-                ) : (
-                  // Oeil normal
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#888" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-                    <circle cx="12" cy="12" r="3"/>
-                  </svg>
-                )}
+              <span onClick={() => setShowPassword(!showPassword)} style={{ cursor: 'pointer' }}>
+                <EyeIcon visible={showPassword} />
               </span>
             </div>
             {errors.motDePasse && <span className="error-msg">{errors.motDePasse}</span>}
           </div>
 
+          {/* Confirmer Mot de passe */}
+          <div className="form-group">
+            <label>Confirmer le mot de passe</label>
+            <div className="input-icon">
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                name="confirmMotDePasse"
+                placeholder="••••••••"
+                value={form.confirmMotDePasse}
+                onChange={handleChange}
+                className={errors.confirmMotDePasse ? 'input-error' : ''}
+              />
+              <span onClick={() => setShowConfirmPassword(!showConfirmPassword)} style={{ cursor: 'pointer' }}>
+                <EyeIcon visible={showConfirmPassword} />
+              </span>
+            </div>
+            {errors.confirmMotDePasse && <span className="error-msg">{errors.confirmMotDePasse}</span>}
+          </div>
+
           {/* Checkbox */}
           <div className="checkbox-group">
-            <input type="checkbox" id="terms" />
+            <input type="checkbox" id="terms" checked={termsAccepted}  onChange={e => setTermsAccepted(e.target.checked)} />
             <label htmlFor="terms">
               J'accepte les <span className="link">Conditions d'Utilisation</span> et la <span className="link">Politique de Confidentialité</span>.
             </label>
           </div>
+          {errors.terms && <span className="error-msg">{errors.terms}</span>}
 
           <button className="btn-primary" onClick={handleSubmit}>
             Créer un compte ✓
