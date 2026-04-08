@@ -17,6 +17,7 @@ import PatientOrdonnances from './pages/patient/pages/PatientOrdonnances';
 import PatientMedicaments from './pages/patient/pages/PatientMedicaments';
 import PatientCommandes from './pages/patient/pages/PatientCommandes';
 import PatientMedecins from './pages/patient/pages/PatientMedecins';
+import PatientPharmacies from './pages/patient/pages/PatientPharmacies';
 import PatientProfil from './pages/patient/pages/PatientProfil';
 
 // Medecin Routes
@@ -165,6 +166,7 @@ function App() {
           <Route path="medicaments" element={<PatientMedicaments />} />
           <Route path="commandes" element={<PatientCommandes />} />
           <Route path="medecins" element={<PatientMedecins />} />
+          <Route path="pharmacies" element={<PatientPharmacies />} />
           <Route path="profil" element={<PatientProfil />} />
         </Route>
         
