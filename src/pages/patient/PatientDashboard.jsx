@@ -1,10 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import './PatientDashboard.css';
 
 function PatientDashboard() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [initials, setInitials] = useState('..');
+
+  useEffect(() => {
+    try {
+      const patientData = localStorage.getItem('patient');
+      if (patientData) {
+        const patient = JSON.parse(patientData);
+        if (patient.nom) {
+          const names = patient.nom.split(' ');
+          let inits = names[0][0];
+          if (names.length > 1) {
+            inits += names[names.length - 1][0];
+          } else if (names[0].length > 1) {
+            inits += names[0][1];
+          }
+          setInitials(inits.toUpperCase());
+        } else {
+          setInitials('JD'); // Jean Dupont
+        }
+      } else {
+        setInitials('AH');
+      }
+    } catch (e) {
+      setInitials('AH');
+    }
+  }, []);
 
   // Déterminer le menu actif en fonction de l'URL
   const getActiveMenu = () => {
@@ -13,6 +39,7 @@ function PatientDashboard() {
     if (path.includes('medicaments')) return 'medicaments';
     if (path.includes('commandes')) return 'commandes';
     if (path.includes('medecins')) return 'medecins';
+    if (path.includes('pharmacies')) return 'pharmacies';
     if (path.includes('profil')) return 'profil';
     return 'overview'; // défaut
   };
@@ -37,6 +64,7 @@ function PatientDashboard() {
           { id: 'ordonnances', label: 'Mes ordonnances', path: '/patient/dashboard/ordonnances', icon: <><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></> },
           { id: 'medicaments', label: 'Mes médicaments', path: '/patient/dashboard/medicaments', icon: <><rect x="3" y="8" width="18" height="8" rx="4"/><line x1="12" y1="8" x2="12" y2="16"/></> },
           { id: 'commandes', label: 'Commander', path: '/patient/dashboard/commandes', icon: <><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></> },
+          { id: 'pharmacies', label: 'Pharmacies', path: '/patient/dashboard/pharmacies', icon: <><path d="M10 4V2a1 1 0 011-1h2a1 1 0 011 1v2"/><path d="M4 10h16v10a2 2 0 01-2 2H6a2 2 0 01-2-2V10z"/><path d="M12 14v4M10 16h4"/></> },
           { id: 'medecins', label: 'Mes médecins', path: '/patient/dashboard/medecins', icon: <><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></> },
           { id: 'profil', label: 'Mon profil santé', path: '/patient/dashboard/profil', icon: <><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></> },
         ].map(item => (
@@ -72,7 +100,16 @@ function PatientDashboard() {
             <h2>Espace Patient 👋</h2>
             <p>Mercredi 18 mars 2026 — Bienvenue sur MyPharma</p>
           </div>
-          <div className="avatar">AH</div>
+          <div 
+            className="avatar" 
+            style={{ cursor: 'pointer', transition: 'transform 0.2s' }} 
+            onClick={() => navigate('/patient/dashboard/profil')}
+            title="Mon profil santé"
+            onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.05)'}
+            onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+          >
+            {initials}
+          </div>
         </div>
 
         {/* C'est ici que les sous-pages s'affichent */}
