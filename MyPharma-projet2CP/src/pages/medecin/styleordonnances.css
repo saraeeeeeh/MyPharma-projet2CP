@@ -1,0 +1,307 @@
+/* Style Ordonnances */
+
+.ord-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 30px;
+    margin-bottom: 30px;
+    background: #f1f3f0 !important;
+}
+
+.ord-intro {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.ord-intro .icon-bg {
+    font-size: 30px;
+    color: #137FEC;
+    background: #e6f2ff;
+    width: 60px; height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ord-intro h3 {
+    margin: 0 0 5px 0;
+    color: #333;
+}
+.ord-intro p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.ord-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.ord-list-card {
+    background: #f1f3f0 !important;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: 0.3s;
+}
+.ord-list-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1) !important;
+}
+
+.ord-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.date-badge {
+    background: #ffffff;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #5c677d;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.date-badge i { margin-right: 5px; color: #137FEC;}
+
+.del-btn-round {
+    background: #fef2f2;
+    color: #dc2626;
+    border: none;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.del-btn-round:hover { background: #fee2e2; transform: scale(1.1); }
+
+.ord-card-body h4 { margin: 0 0 10px 0; font-size: 18px; color: #333; }
+.med-count { font-size: 14px; color: #137FEC; font-weight: 600; display:flex; align-items:center; gap: 8px;}
+
+/* GENERATOR */
+.generator-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.gen-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px !important;
+    margin-bottom: 30px;
+    background: #f1f3f0 !important;
+}
+
+.toolbar-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #333;
+}
+
+/* THE PAPER SHEET */
+.paper-sheet {
+    background: #ffffff;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    padding: 50px 60px;
+    min-height: 800px;
+    font-family: "Georgia", serif; /* Pour faire plus "document médical officiel" */
+    color: #2c3e50;
+    display: flex;
+    flex-direction: column;
+}
+
+.paper-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.doc-info h2 { font-size: 26px; color: #137FEC; margin: 0 0 5px 0; font-family: 'Montserrat', sans-serif;}
+.doc-spec { font-size: 16px; font-weight: 600; font-style: italic; color: #5c677d; margin-bottom: 10px; }
+.doc-contact { font-size: 13px; line-height: 1.6; color: #666; font-family: 'Montserrat', sans-serif;}
+
+.logo-ordo {
+    font-size: 60px;
+    color: #d1d5db;
+    opacity: 0.4;
+}
+
+.paper-divider {
+    height: 2px;
+    background: #137FEC;
+    opacity: 0.3;
+    margin: 30px 0;
+}
+
+.paper-patient {
+    margin-bottom: 40px;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+}
+
+.pat-line {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.pat-line span { font-weight: 700; color: #333; font-size: 15px;}
+
+.inline-input {
+    border: none;
+    border-bottom: 1px dashed #9facbd;
+    padding: 5px 10px;
+    font-size: 16px;
+    color: #137FEC;
+    font-weight: 600;
+    outline: none;
+    background: transparent;
+    font-family: 'Montserrat', sans-serif;
+}
+.inline-input:focus { border-bottom: 2px solid #137FEC;}
+
+.paper-content {
+    flex: 1;
+}
+
+.section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.med-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.med-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    font-size: 16px;
+}
+.num-med {
+    font-weight: bold;
+    color: #137FEC;
+}
+.med-text strong {
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+.med-text p { margin: 0; color: #555; font-style: italic; }
+
+.add-med-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8fafc;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px dashed #cbd5e1;
+    font-family: 'Montserrat', sans-serif;
+}
+.add-med-form input {
+    flex: 1;
+    border: 1px solid #e2e8f0;
+    padding: 10px 15px;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+}
+.add-med-btn {
+    background: #137FEC;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    width: 40px; height: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+.add-med-btn:hover { background: #0e62b8; }
+
+.paper-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 50px;
+    padding-top: 20px;
+}
+
+.signature-box {
+    text-align: center;
+    width: 250px;
+    height: 120px;
+    border-top: 1px dashed #cbd5e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    transition: 0.2s;
+    user-select: none;
+}
+.signature-box:hover {
+    background-color: #f8fafc;
+}
+
+.editable-header {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.h-input {
+    border: 1px dashed transparent;
+    background: transparent;
+    outline: none;
+    transition: 0.2s;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+.h-input:hover, .h-input:focus {
+    border-color: #cbd5e1;
+    background: #f8fafc;
+}
+.h-name {
+    font-size: 26px;
+    color: #137FEC;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    width: 300px;
+}
+.h-spec {
+    font-size: 16px;
+    font-weight: 600;
+    font-style: italic;
+    color: #5c677d;
+    width: 300px;
+}
+.h-contact {
+    font-size: 13px;
+    color: #666;
+    font-family: 'Montserrat', sans-serif;
+    width: 150px;
+}

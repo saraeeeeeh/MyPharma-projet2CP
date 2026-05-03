@@ -1,0 +1,100 @@
+/* stylepublic.css - Styles pour les pages informatives (Aide, Confidentialité, etc.) */
+
+.page-publique {
+  background-color: #f4f7f6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter', sans-serif;
+}
+
+.page-publique .contenu-principal {
+  flex: 1;
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.card-info {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  padding: 40px;
+}
+
+.card-info h1 {
+  color: #2c3e50;
+  font-size: 28px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #137FEC;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.card-info h2 {
+  color: #137FEC;
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.card-info p, .card-info li {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.card-info ul.tabs {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.card-info ul.tabs li {
+  margin-right: 20px;
+  cursor: pointer;
+  padding: 10px 15px;
+  color: #777;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.card-info ul.tabs li:hover {
+  color: #137FEC;
+}
+
+.card-info ul.tabs li.active {
+  color: #137FEC;
+  border-bottom: 3px solid #137FEC;
+}
+
+.faq-item {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+.faq-item:last-child {
+  border-bottom: none;
+}
+.faq-question {
+  font-weight: 600;
+  color: #2c3e50;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.faq-question i {
+  color: #137FEC;
+  transition: transform 0.3s;
+}
+.faq-answer {
+  margin-top: 10px;
+  color: #555;
+  font-size: 14px;
+}

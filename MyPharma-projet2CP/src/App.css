@@ -1,0 +1,155 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0d2d3a 0%, #0f4a5e 40%, #0e6b6b 70%, #1a8c7a 100%);
+  min-height: 100vh;
+}
+
+/* NAVBAR */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+}
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-icon {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; color: white;
+}
+.logo-text h1 { font-size: 18px; font-weight: 700; color: white; }
+.logo-text p  { font-size: 11px; color: rgba(255,255,255,0.6); }
+.nav-links { display: flex; align-items: center; gap: 24px; }
+.nav-links a  { color: rgba(255,255,255,0.8); text-decoration: none; font-size: 14px; }
+.btn-support  {
+  background: white; color: #0d2d3a;
+  padding: 8px 20px; border-radius: 20px;
+  font-size: 14px; font-weight: 600; border: none; cursor: pointer;
+}
+
+/* HERO */
+.hero { text-align: center; padding: 50px 20px 30px; }
+.hero h2 { font-size: 56px; font-weight: 800; color: white; margin-bottom: 14px; }
+.hero p  { font-size: 16px; color: rgba(255,255,255,0.85); }
+.hero-highlight { color: #5de8c5; font-weight: 600; }
+
+/* CARDS */
+.cards {
+  display: flex; justify-content: center;
+  gap: 22px; padding: 30px 40px; flex-wrap: wrap;
+}
+.profile-card {
+  background: rgba(255,255,255,0.07) !important;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  border-radius: 20px; width: 260px; padding: 20px;
+  transition: all 0.3s; cursor: pointer;
+}
+.profile-card:hover  { transform: translateY(-6px); }
+.profile-card.medecin:hover {
+  background: rgba(44, 111, 212, 0.4);
+  border-color: rgba(44, 111, 212, 0.8);
+}
+
+
+.profile-card.patient:hover {
+  background: rgba(63, 64, 63, 0.4);
+  border-color: rgba(148, 159, 156, 0.8);
+}
+
+.profile-card.pharmacien:hover {
+  background: rgba(30, 138, 94, 0.4);
+  border-color: rgba(93, 232, 197, 0.8);
+}
+.profile-card.active { border-color: rgba(255,255,255,0.5); background: rgba(255,255,255,0.14); }
+.card-img {
+  width: 100%; height: 170px; border-radius: 12px;
+  object-fit: cover;
+}
+.card-tag { 
+  display: flex; 
+  align-items: center; 
+  gap: 6px; 
+  margin: 14px 0 6px;
+  justify-content: center;
+}
+
+.profile-card h3 { 
+  color: white !important; 
+  font-size: 22px; 
+  font-weight: 700; 
+  margin-bottom: 8px; 
+  text-align: center;
+}
+
+.profile-card p { 
+  color: rgba(255,255,255,0.65) !important; 
+  font-size: 13px; 
+  line-height: 1.5; 
+  margin-bottom: 18px; 
+  text-align: center;
+}
+.tag-label { font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
+.tag-label.patient    { color: rgba(255,255,255,0.7); }
+.tag-label.medecin    { color: #5de8c5; }
+.tag-label.pharmacien { color: #5de8c5; }
+
+
+/* BOUTONS */
+.btn-acces {
+  width: 100%; padding: 12px; border-radius: 25px;
+  border: none; font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.btn-acces.medecin     { background: #2c6fd4; color: white; }
+.btn-acces.medecin:hover { background: #3a7ee8; }
+.btn-acces.pharmacien    { background: #1e8a5e; color: white; }
+.btn-acces.pharmacien:hover { background: #25a672; }
+.btn-acces.patient { background: transparent; border: 1.5px solid rgba(255,255,255,0.5); color: white; }
+.btn-acces.patient:hover { background: rgba(255,255,255,0.1); }
+
+/* FOOTER */
+.footer {
+  text-align: center; padding: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1); margin-top: 10px;
+}
+.footer-links { display: flex; justify-content: center; gap: 16px; margin-bottom: 8px; }
+.footer-links a   { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 12px; }
+.footer-links span { color: rgba(255,255,255,0.3); }
+.footer p { color: rgba(255,255,255,0.4); font-size: 12px; }
+
+/* MODAL */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex; align-items: center; justify-content: center; z-index: 100;
+}
+.modal {
+  background: white; border-radius: 16px;
+  padding: 30px; max-width: 340px; width: 90%; text-align: center;
+}
+.modal h3 { font-size: 20px; color: #0d2d3a; margin-bottom: 8px; }
+.modal p  { color: #666; font-size: 14px; margin-bottom: 20px; }
+.modal-btns { display: flex; gap: 10px; }
+.modal-btns button { flex: 1; padding: 10px; border-radius: 10px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; }
+.btn-connexion { background: #2c6fd4; color: white; }
+.btn-cancel    { background: #f0f0f0; color: #333; }
+
+.hero-highlight {
+  color: #5de8c5;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.hero-highlight:hover {
+  opacity: 0.7;
+}
